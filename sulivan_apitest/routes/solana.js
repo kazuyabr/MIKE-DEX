@@ -2,7 +2,7 @@ const express = require('express');
 const { Keypair, Connection, PublicKey, clusterApiUrl, Transaction, SystemProgram, LAMPORTS_PER_SOL } = require('@solana/web3.js');
 
 const router = express.Router();
-const connection = new Connection(clusterApiUrl('devnet'),'confirmed');
+const connection = new Connection(clusterApiUrl('testnet'),'confirmed');
 
 // Gerar par de chaves
 router.get('/generate-keypair', async (req, res) => {
@@ -53,7 +53,7 @@ router.post('/send-transaction', async (req, res) => {
 
         res.status(200).json({ signature });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.status(429).json({ error: error.message });
     }
 });
 
